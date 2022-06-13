@@ -1,6 +1,6 @@
 package com.spring.batch.config;
 
-import com.spring.batch.entity.BitcoinData;
+import com.spring.batch.model.BitcoinData;
 import org.springframework.batch.item.ItemProcessor;
 
 public class BitcoinProcessor implements ItemProcessor<BitcoinData, BitcoinData> {

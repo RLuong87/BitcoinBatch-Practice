@@ -1,26 +1,27 @@
-package com.spring.batch.entity;
+package com.spring.batch.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "bitcoin_data")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Entity
+@Table(schema = "bitcoin_batch")
 public class BitcoinData {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "unix_timestamp")
-    private String unixTimestamp;
+    private String unix_timestamp;
+    @Column(name = "date_time")
+    private String date_time;
     @Column(name = "open")
     private String open;
     @Column(name = "high")
@@ -30,11 +31,11 @@ public class BitcoinData {
     @Column(name = "close")
     private String close;
     @Column(name = "volume_btc")
-    private String volumeBTC;
+    private String volume_btc;
     @Column(name = "volume_currency")
-    private String volumeCurrency;
+    private String volume_currency;
     @Column(name = "weighted_price")
-    private String weightedPrice;
+    private String weighted_price;
 
     public Long getId() {
         return id;
@@ -44,12 +45,20 @@ public class BitcoinData {
         this.id = id;
     }
 
-    public String getUnixTimestamp() {
-        return unixTimestamp;
+    public String getUnix_timestamp() {
+        return unix_timestamp;
     }
 
-    public void setUnixTimestamp(String unixTimestamp) {
-        this.unixTimestamp = unixTimestamp;
+    public void setUnix_timestamp(String unix_timestamp) {
+        this.unix_timestamp = unix_timestamp;
+    }
+
+    public String getDate_time() {
+        return date_time;
+    }
+
+    public void setDate_time(String date_time) {
+        this.date_time = date_time;
     }
 
     public String getOpen() {
@@ -84,27 +93,27 @@ public class BitcoinData {
         this.close = close;
     }
 
-    public String getVolumeBTC() {
-        return volumeBTC;
+    public String getVolume_btc() {
+        return volume_btc;
     }
 
-    public void setVolumeBTC(String volumeBTC) {
-        this.volumeBTC = volumeBTC;
+    public void setVolume_btc(String volume_btc) {
+        this.volume_btc = volume_btc;
     }
 
-    public String getVolumeCurrency() {
-        return volumeCurrency;
+    public String getVolume_currency() {
+        return volume_currency;
     }
 
-    public void setVolumeCurrency(String volumeCurrency) {
-        this.volumeCurrency = volumeCurrency;
+    public void setVolume_currency(String volume_currency) {
+        this.volume_currency = volume_currency;
     }
 
-    public String getWeightedPrice() {
-        return weightedPrice;
+    public String getWeighted_price() {
+        return weighted_price;
     }
 
-    public void setWeightedPrice(String weightedPrice) {
-        this.weightedPrice = weightedPrice;
+    public void setWeighted_price(String weighted_price) {
+        this.weighted_price = weighted_price;
     }
 }

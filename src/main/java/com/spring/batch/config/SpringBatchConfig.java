@@ -1,8 +1,7 @@
 package com.spring.batch.config;
 
-import com.spring.batch.entity.BitcoinData;
+import com.spring.batch.model.BitcoinData;
 import com.spring.batch.repository.BitcoinRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -14,17 +13,19 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
 @Configuration
 @EnableBatchProcessing
-@AllArgsConstructor
 public class SpringBatchConfig {
 
+    @Autowired
     private JobBuilderFactory jobBuilderFactory;
 
+    @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
     private BitcoinRepository bitcoinRepository;
@@ -46,7 +47,7 @@ public class SpringBatchConfig {
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
         lineTokenizer.setStrict(false);
-        lineTokenizer.setNames("unix_timestamp", "open", "high", "low", "close", "volume_btc", "volume_currency", "weighted_price");
+        lineTokenizer.setNames("unix_timestamp", "date_time", "open", "high", "low", "close", "volume_btc", "volume_currency", "weighted_price");
 
         BeanWrapperFieldSetMapper<BitcoinData> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(BitcoinData.class);
